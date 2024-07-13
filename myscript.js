@@ -34,6 +34,7 @@ console.log(date)
 
 //OPERATORS
 
+
 //Equal
 console.log("Wynik porównania: " + (length == weight))
 
@@ -62,3 +63,21 @@ console.log(100 <= 100)
 //Ternary operator
 let result = 100 > 101 ? "TAK" : "NIE"
 console.log(result)
+
+
+
+//LOOPS
+
+//For loop
+for(let i = 0; i < 9; i++){
+    console.log(i)
+}
+
+for(let i = 10; i >= 0; i--){
+    console.log(i)
+}
+
+//ForEach
+cars.forEach(function(element){
+    console.log(element)
+})
