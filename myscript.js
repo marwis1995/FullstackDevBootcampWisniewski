@@ -81,3 +81,32 @@ for(let i = 10; i >= 0; i--){
 cars.forEach(function(element){
     console.log(element)
 })
+
+
+
+
+//IF ELSE (+ AND)
+let themperature = 38.5
+if(themperature >= 36 && themperature < 37){
+    console.log("W normie")
+}else if(themperature >= 37 && themperature < 38){
+    console.log("Stan podgorączkowy")
+}else if(themperature >= 38 && themperature < 40){
+    console.log("Gorączka")
+}else{
+    console.log("Błąd pomiaru")
+}
+
+
+//OR
+let money = 30
+let voucher = false
+
+if(money > 20 || voucher == true){
+    console.log("Możesz iść na film")
+}
+
+//NOT
+if(!(15>20)){
+    console.log("NOT")
+}
