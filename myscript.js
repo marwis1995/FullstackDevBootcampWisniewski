@@ -1,33 +1,26 @@
-function exampleFunction(){
-    console.log("Function")
+function basicAdd(a, b){
+    return a + b
 }
 
-function substractArgs(arg1, arg2){
-    let result = arg1 + arg2
-    console.log(result)
-}
+const newAdd = (a, b) => a + b
 
-function calculateAge(yearOfBirth){
-    return 2024 -  yearOfBirth
-}
-
-function checkIdCanWatchMovie(age, money){
-    if(age >= 18 && money >= 30){
-        return true
-    }else{
-        return false
-    }
-    console.log("Unreachable code detected")
+const addAndPrint = (a, b) => {
+    let ret = a + b
+    console.log("add and print ", ret)
+    return ret
 }
 
 window.onload = function (){
-    exampleFunction()
-    substractArgs(2, 2)
-    substractArgs(2, 3)
 
-    let myAge = calculateAge(1995)
-    console.log("Mój wiek to: " + myAge)
-    let myMoney = 50
+    console.log(basicAdd(2, 2))
 
-    console.log(checkIdCanWatchMovie(myAge, myMoney))
+    console.log("New add:" + newAdd(2, 2))
+
+    addAndPrint(2, 2)
+
+    let array = [1, 2, 3, 4]
+    array.forEach(element => {
+        console.log(element)
+    })
+
 }
