@@ -1,25 +1,48 @@
-class Product{
+function Click() {
+    this.handlers = [];  // observers
+}
 
-    constructor(width, height, weight){
-        this.width = width
-        this.height = height
-        this.weight = weight
-    }
+Click.prototype = {
 
-    display(){
-        console.log("Product: " + this.width + " " + this.height + " " + this.weight)
+    subscribe: function (fn) {
+        this.handlers.push(fn);
+    },
+
+    unsubscribe: function (fn) {
+        this.handlers = this.handlers.filter(
+            function (item) {
+                if (item !== fn) {
+                    return item;
+                }
+            }
+        );
+    },
+
+    fire: function (o, thisObj) {
+        var scope = thisObj || window;
+        this.handlers.forEach(function (item) {
+            item.call(scope, o);
+        });
     }
 }
 
-class ProductFactory{
-    createProduct(width, height, weight){
-        return new Product(width, height, weight)
-    }
+function run() {
+
+    var clickHandler = function (item) {
+        console.log("fired: " + item);
+    };
+
+    var click = new Click();
+
+    click.subscribe(clickHandler);
+    click.fire('event #1');
+    click.unsubscribe(clickHandler);
+    click.fire('event #2');
+    click.subscribe(clickHandler);
+    click.fire('event #3');
 }
 
-const factory = new ProductFactory()
 
-const product = factory.createProduct(20, 20, 20)
-const product2 = factory.createProduct(10, 20, 30)
-product.display()
-product2.display()
+window.onclick = function(){
+    run()
+}
