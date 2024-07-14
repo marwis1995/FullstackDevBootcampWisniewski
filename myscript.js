@@ -1,48 +1,15 @@
-function Click() {
-    this.handlers = [];  // observers
-}
-
-Click.prototype = {
-
-    subscribe: function (fn) {
-        this.handlers.push(fn);
-    },
-
-    unsubscribe: function (fn) {
-        this.handlers = this.handlers.filter(
-            function (item) {
-                if (item !== fn) {
-                    return item;
-                }
-            }
-        );
-    },
-
-    fire: function (o, thisObj) {
-        var scope = thisObj || window;
-        this.handlers.forEach(function (item) {
-            item.call(scope, o);
-        });
-    }
-}
-
-function run() {
-
-    var clickHandler = function (item) {
-        console.log("fired: " + item);
-    };
-
-    var click = new Click();
-
-    click.subscribe(clickHandler);
-    click.fire('event #1');
-    click.unsubscribe(clickHandler);
-    click.fire('event #2');
-    click.subscribe(clickHandler);
-    click.fire('event #3');
-}
+const Person = function(name, surname, age){
+    this.name = name
+    this.surname = surname
+    this.age = age
+} 
 
 
-window.onclick = function(){
-    run()
-}
+
+const person = new Person("Jan", "Kowalski", 18)
+const person2 = new Person("Jan", "Nowak", 20)
+console.log(person.name + " " + person.surname + " " + person.age)
+console.log(person2)
+
+let persons = [person, person2, new Person("Jan", "Kowalski", 18), new Person("Jan", "Kowalski", 18)]
+console.log(persons)
