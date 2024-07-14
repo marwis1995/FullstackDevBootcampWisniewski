@@ -1,24 +1,43 @@
-//STANDARD
-function doThings(){
-    return Promise.resolve("ok")
+function loadUserData() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve("A")
+        }, 1000)
+    })
 }
 
-doThings()
-    .then(res => {
-        console.log(res)
+function loadBooks() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            reject("Error while downloading books")
+        }, 1000)
     })
-
-
-//ASYNC
-async function doThingsAsync(){
-    return "ok async"
-    // return Promise.reject("not ok")
 }
 
-doThingsAsync()
-    .then(res => {
-        console.log(res)
+function loadPets() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve("C")
+        }, 1000)
     })
-    .catch(error => {
-        console.log(error)
-    })
+}
+
+
+async function render() {
+    const user = await loadUserData()
+    let books
+    loadBooks()
+        .then(res => {
+            books = res
+        })
+        .catch(err => {
+            console.log(err)
+            books = ""
+        })
+    const pets = await loadPets()
+    console.log(user, books, pets)
+}
+
+window.onload = function () {
+    render()
+}
