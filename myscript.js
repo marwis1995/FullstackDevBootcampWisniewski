@@ -1,12 +1,14 @@
-window.onload = function (){
-    const button = document.querySelector('#actionButton')
-    const inputBox = document.querySelector('#inputBox')
-    const message = document.querySelector('#message')
+function myDisplayer(text){
+    alert(text)
+}
 
+function myCalculator(num1, num2, myCallback){
+    let sum = num1 + num2
+    myCallback(sum)
+}
 
-    message.innerHTML='<h1>aaaa</h1>'
-    button.addEventListener("click", function(){
-        // alert(inputBox.value)
-        message.innerHTML='<h1>aaaa</h1>'
-    })
+myCalculator(5, 5, myDisplayer)
+
+window.onload = function(){
+    myCalculator(5, 5, myDisplayer)
 }
