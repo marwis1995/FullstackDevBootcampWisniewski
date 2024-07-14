@@ -1,15 +1,25 @@
-const Person = function(name, surname, age){
-    this.name = name
-    this.surname = surname
-    this.age = age
+const Player = function(nick, email){
+    this.nick = nick
+    this.email = email
+    this.shoot = () => console.log("SHOOT!!!")
 } 
 
 
+Player.prototype.login = () => console.log("Logged!")
+Player.prototype.logout = () => console.log("Logout!")
+Player.prototype.moveLeft = () => console.log("Go left!")
+Player.prototype.moveRight = () => console.log("Go right!")
 
-const person = new Person("Jan", "Kowalski", 18)
-const person2 = new Person("Jan", "Nowak", 20)
-console.log(person.name + " " + person.surname + " " + person.age)
-console.log(person2)
+console.log(Player)
 
-let persons = [person, person2, new Person("Jan", "Kowalski", 18), new Person("Jan", "Kowalski", 18)]
-console.log(persons)
+const player1 = new Player("Nick1", "example1@example.pl")
+const player2 = new Player("Nick2", "example2@example.pl")
+const player3 = new Player("Nick3", "example3@example.pl")
+
+console.log(player1)
+console.log(player2)
+console.log(player3)
+
+player1.shoot()
+player1.login()
+
