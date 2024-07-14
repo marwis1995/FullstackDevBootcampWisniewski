@@ -1,43 +1,23 @@
-function loadUserData() {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve("A")
-        }, 1000)
-    })
-}
-
-function loadBooks() {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            reject("Error while downloading books")
-        }, 1000)
-    })
-}
-
-function loadPets() {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve("C")
-        }, 1000)
-    })
+class AppConfig{
+    constructor(number = 5, urlToServer = "prod_server"){
+        if(AppConfig.exists){
+            return AppConfig.instance
+        }
+        this.randomNumber = Math.random()
+        this.number = number
+        this.urlToServer = urlToServer
+        AppConfig.exists = true
+        AppConfig.instance = this
+        return this
+    }
 }
 
 
-async function render() {
-    const user = await loadUserData()
-    let books
-    loadBooks()
-        .then(res => {
-            books = res
-        })
-        .catch(err => {
-            console.log(err)
-            books = ""
-        })
-    const pets = await loadPets()
-    console.log(user, books, pets)
-}
+const configObject = new AppConfig(8, localhost)
+const configObject2 = new AppConfig(1)
+const configObject3 = new AppConfig(1)
 
-window.onload = function () {
-    render()
-}
+console.log(configObject)
+console.log(configObject2)
+console.log(configObject3)
+console.log(configObject === configObject2)
